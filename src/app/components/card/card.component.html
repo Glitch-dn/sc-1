@@ -1,0 +1,37 @@
+@if(card){
+<div class="card my-3 shadow-sm" style="width: 25rem">
+  <div
+    class="card-body"
+    [ngClass]="{
+      'text-bg-success': card.type === 'invoice',
+      'text-bg-secondary': card.type === 'withdrawal'
+    }"
+  >
+    <h5 class="card-title">
+      <strong>{{ card.business }}</strong>
+    </h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <span class="fw-bold">Nome:</span> {{ card.name }}
+      </li>
+      <li class="list-group-item">
+        <span class="fw-bold">Conto:</span> {{ card.account }}
+      </li>
+      <li class="list-group-item">
+        <span class="fw-bold">Data:</span>
+        {{ card.date * 1000 | date : "dd/MM/yyyy" }}
+      </li>
+      <li class="list-group-item">
+        <span class="fw-bold">Tipo:</span> {{ card.type }}
+      </li>
+      <li
+        class="list-group-item"
+        [ngClass]="{ 'list-group-item-warning': card.amount >= 700 }"
+      >
+        <span class="fw-bold">Importo:</span>
+        {{ card.amount | currency }}
+      </li>
+    </ul>
+  </div>
+</div>
+}
